@@ -3,7 +3,6 @@ import App from "./App.vue";
 import router from "./router";//路由
 import store from "./store/";//vuex 状态管理
 import {VueAxios} from "@/utils/request";//接口请求
-import "./registerServiceWorker";//静态资源缓存
 // import Antd from 'ant-design-vue'
 // import 'ant-design-vue/dist/antd.less'
 import "@babel/polyfill" //用来兼容ie

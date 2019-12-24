@@ -2,21 +2,16 @@
 	<div id="app">
 		<div class="flex">
 			<div class="leftpart flex-1">
-				<div class="copyright">
-					<p class="name">智慧教育云平台管理系统</p>
-					<p class="englishName">SMART EDUCATION CLOUD PLATFORM MANAGEMENT SYSTEM </p>
-					<div class="bd"></div>
-				</div>
+			
 			</div>
 			<div class="loginbox flex flex-align-center">
 				<div>
 					<img src="../../assets/img/cslogo5.png" alt="" class="logo">
 					<div class="title">用户登录</div>
-					<div class="subtitle">欢迎登陆智慧教育云平台管理系统</div>
+					<div class="subtitle">欢迎登陆管理系统</div>
 					<a-form :form="form" @submit="handleSubmit" autocomplete="off">
 						<a-form-item :validate-status="userNameError() ? 'error' : ''" :help="userNameError() || ''">
 							<a-input v-decorator="['username', { rules: [{ required: true, message: '请输入用户名!' }] }]" placeholder="请输入账号">
-								<!-- <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)" /> -->
 								<i class="material-icons icon iconfont" slot="prefix">person_outline</i>
 							</a-input>
 						</a-form-item>
@@ -44,7 +39,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- <a href="/index.html" class="abc">登录到主页</a> -->
 	</div>
 </template>
 
@@ -101,21 +95,20 @@
 							username: values.username.trim(),
 							password: values.password.trim()
 						}
-						//location.href="index.html";
+						location.href="index.html";
 
-						this.$postAction('/plat/login', loginParams).then(da => {
-							// console.log(da);
-							if (da.code == 0) {
-								localStorage.setItem('userInfo', JSON.stringify(da.data));
-								if (values.remember) {
-									localStorage.setItem('loginInfo', JSON.stringify(loginParams));
-								}
-								 location.href = "index.html";
-							} else {
-								// this.$message.error(da.msg ? da.msg : '发生错误了！');
-							}
-
-						})
+// 						this.$postAction('/plat/login', loginParams).then(da => {
+// 							if (da.code == 0) {
+// 								localStorage.setItem('userInfo', JSON.stringify(da.data));
+// 								if (values.remember) {
+// 									localStorage.setItem('loginInfo', JSON.stringify(loginParams));
+// 								}
+// 								 location.href = "index.html";
+// 							} else {
+// 								// this.$message.error(da.msg ? da.msg : '发生错误了！');
+// 							}
+// 
+// 						})
 					}
 				});
 			}

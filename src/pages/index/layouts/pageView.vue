@@ -6,7 +6,7 @@
 					<router-link :to="{ name: 'Home' }">
 						<img src="../../../assets/img/cslogo1.png" alt="" style="width: 40px;">
 						<!-- <a-icon type="global" /> -->
-						<span class="ml5">智慧教育云平台</span>
+						<span class="ml5">管理平台平台</span>
 					</router-link>
 				</div>
 				<div class="flex-1">
@@ -14,9 +14,9 @@
 				</div>
 				<!-- <notice-icon class="action" /> -->
 				<div class="avatar" @click="setuserInfo=true">
-					<img alt="" :src="fileUrl+userInfo.picUrl"  v-if="userInfo.picUrl"/>
-					<img alt="" src="../../../assets/img/thumb.png"  v-if="!userInfo.picUrl"/>
-					</div>
+					<img alt="" :src="fileUrl+userInfo.picUrl" v-if="userInfo.picUrl" />
+					<img alt="" src="../../../assets/img/thumb.png" v-if="!userInfo.picUrl" />
+				</div>
 				<div class="theme" @click="showSet()">
 					<i class="material-icons icon iconfont">settings</i>
 					<span>主题</span>
@@ -46,7 +46,7 @@
 				<!-- forceRender 被隐藏时候是否渲染dom结构 -->
 			</a-tabs>
 		</a-modal>
-		<setting-drawer ref="setting"  @sendChangeColor="sendChangeColor" @sendChangeTheme="sendChangeTheme"></setting-drawer>
+		<setting-drawer ref="setting" @sendChangeColor="sendChangeColor" @sendChangeTheme="sendChangeTheme"></setting-drawer>
 	</div>
 </template>
 <script>
@@ -182,22 +182,44 @@
 				}
 			},
 			getlistLevelOneMenu() {
-				this.$postAction(api.getlistLevelOneMenu).then(da => {
-					if (da.code == 0) {
-						console.log(da.data);
-						let list = [{
-							name: '首页',
-							key: 'index',
-							url: './home.html',
-							icon: 'home',
-							menuId: ''
-						}];
-						this.list = list.concat(da.data);
-						this.$refs.tagsView.initTags();
-					} else {
-						// this.$message.error(da.msg ? da.msg : '发生错误了！');
-					}
-				})
+
+				let list = [{
+					name: '首页',
+					key: 'index',
+					url: './home.html',
+					icon: 'home',
+					menuId: ''
+				}, {
+					"menuId": 1,
+					"parentId": 0,
+					"name": "基础管理",
+					"url": "./baseManage.html",
+					"perms": null,
+					"component": null,
+					"redirect": null,
+					"isCacheRoute": null,
+					"type": 0,
+					"icon": "apps",
+					"orderNum": 0,
+					"gmtCreate": "2017-08-09 22:49:47",
+					"gmtModified": null
+				}, {
+					"menuId": 3,
+					"parentId": 0,
+					"name": "系统管理",
+					"url": "./sysManage.html",
+					"perms": "sysManage",
+					"component": null,
+					"redirect": null,
+					"isCacheRoute": null,
+					"type": 0,
+					"icon": "card_membership",
+					"orderNum": 1,
+					"gmtCreate": "2017-08-09 23:06:55",
+					"gmtModified": "2017-08-14 14:13:43"
+				}];
+				this.list = list;
+				this.$refs.tagsView.initTags();
 			},
 			logout() {
 				logout().then(da => {
@@ -224,33 +246,33 @@
 				}
 
 			},
-			sendChangeColor(color){
+			sendChangeColor(color) {
 				for (var i = 0; i < this.visitedViews.length; i++) {
 					let iframeWin = this.$refs['iframe' + i][0].contentWindow;
 					if (iframeWin) {
 						iframeWin.postMessage({
 							cmd: 'uploadColor',
 							params: {
-								color:color
+								color: color
 							}
 						}, '*');
 					}
 				}
 			},
-			sendChangeTheme(navTheme){
+			sendChangeTheme(navTheme) {
 				for (var i = 0; i < this.visitedViews.length; i++) {
 					let iframeWin = this.$refs['iframe' + i][0].contentWindow;
 					if (iframeWin) {
 						iframeWin.postMessage({
 							cmd: 'uploadTheme',
 							params: {
-								theme:navTheme
+								theme: navTheme
 							}
 						}, '*');
 					}
 				}
 			},
-			showSet(){
+			showSet() {
 				this.$refs.setting.show();
 			}
 

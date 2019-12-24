@@ -96,10 +96,8 @@ function setredirect(routerMap) {
 	console.log('routerMap', routerMap)
 	routerMap.forEach(route => {
 		if (route.redirect == 'redirect') {
-
 			if (route.children && route.children.length > 0) {
 				route.redirect = route.children[0].path;
-
 				route.children = setredirect(route.children)
 			}
 			// return true
@@ -140,15 +138,12 @@ const permission = {
 				console.log(JSON.stringify(menulist));
 				let permslist = JSON.stringify(menulist).match(/(?=\"perms\":")([^\,]*)(?=\,)/g).join(',').replace(/"perms":/g,
 					'').replace(/\"/g, '').split(',');
-				//console.log(permslist)
-				// const accessedRouters = filterAsyncRouter(asyncRouterMap, permslist)
 				const accessedRouters = setAsyncRouter(filterAsyncRouter(menulist));
 				asyncRouterMap[0].children = [...accessedRouters];
 				//console.log('accessedRouters',asyncRouterMap);
 				const router = setredirect(asyncRouterMap);
-				console.log(router)
-				commit('SET_ROUTERS', router)
-				commit('SET_PERMSLIST', permslist)
+				commit('SET_ROUTERS', router)//组成新的路由表
+				commit('SET_PERMSLIST', permslist)//保存所有权限
 				resolve()
 			})
 		}

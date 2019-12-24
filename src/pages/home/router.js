@@ -21,6 +21,15 @@ export const constantRouterMap = [{
 				icon: 'hourglass_empty',
 				permission: ['about']
 			}
+		}, {
+			path: '/base',
+			name: 'base',
+			component: () => import( /* webpackChunkName: "about" */ './views/base.vue'),
+			meta: {
+				title: '基础组件',
+				icon: 'hourglass_empty',
+				permission: ['about']
+			}
 		}]
 	}
 

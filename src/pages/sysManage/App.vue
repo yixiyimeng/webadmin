@@ -39,19 +39,375 @@
 			this.$store.commit('SET_menuId', menuId);
 			//console.log(menuId)
 			if (menuId && menuId != "undefined") {
-				getlistLevelOtherMenu({
-					'menuId': menuId
-				}).then(da => {
-					let menulist = da.data;
-					console.log(menulist);
-					store.dispatch('GenerateRoutes', {
-						menulist
-					}).then(() => {
-						router.addRoutes(store.getters.addRouters)
-					})
-					sessionStorage.setItem('subMenu[' + menuId + ']', JSON.stringify(menulist))
-
+				let menulist = [{
+					"id": "2",
+					"text": "系统菜单",
+					"state": null,
+					"type": 1,
+					"perms": "sys:menu:menu",
+					"component": "views/menulist.vue",
+					"redirect": null,
+					"isCacheRoute": 1,
+					"orderNum": null,
+					"checked": true,
+					"attributes": {
+						"icon": "account_balance",
+						"url": "/menulist"
+					},
+					"children": [{
+						"id": "61",
+						"text": "批量删除",
+						"state": null,
+						"type": 2,
+						"perms": "sys:menu:batchRemove",
+						"component": null,
+						"redirect": null,
+						"isCacheRoute": null,
+						"orderNum": null,
+						"checked": true,
+						"attributes": {
+							"icon": null,
+							"url": ""
+						},
+						"children": [],
+						"parentId": "2",
+						"parentText": "系统菜单",
+						"hasParent": true,
+						"hasChildren": false
+					}, {
+						"id": "21",
+						"text": "编辑",
+						"state": null,
+						"type": 2,
+						"perms": "sys:menu:edit",
+						"component": null,
+						"redirect": null,
+						"isCacheRoute": null,
+						"orderNum": null,
+						"checked": true,
+						"attributes": {
+							"icon": "",
+							"url": ""
+						},
+						"children": [],
+						"parentId": "2",
+						"parentText": "系统菜单",
+						"hasParent": true,
+						"hasChildren": false
+					}, {
+						"id": "20",
+						"text": "新增",
+						"state": null,
+						"type": 2,
+						"perms": "sys:menu:add",
+						"component": null,
+						"redirect": null,
+						"isCacheRoute": null,
+						"orderNum": null,
+						"checked": true,
+						"attributes": {
+							"icon": "",
+							"url": ""
+						},
+						"children": [],
+						"parentId": "2",
+						"parentText": "系统菜单",
+						"hasParent": true,
+						"hasChildren": false
+					}, {
+						"id": "22",
+						"text": "删除",
+						"state": null,
+						"type": 2,
+						"perms": "sys:menu:remove",
+						"component": null,
+						"redirect": null,
+						"isCacheRoute": null,
+						"orderNum": null,
+						"checked": true,
+						"attributes": {
+							"icon": "",
+							"url": ""
+						},
+						"children": [],
+						"parentId": "2",
+						"parentText": "系统菜单",
+						"hasParent": true,
+						"hasChildren": false
+					}],
+					"parentId": "3",
+					"parentText": null,
+					"hasParent": false,
+					"hasChildren": true
+				}, {
+					"id": "211",
+					"text": "账户管理",
+					"state": null,
+					"type": 1,
+					"perms": null,
+					"component": "views/accountlist.vue",
+					"redirect": null,
+					"isCacheRoute": 0,
+					"orderNum": null,
+					"checked": true,
+					"attributes": {
+						"icon": "face",
+						"url": "/accountlist"
+					},
+					"children": [],
+					"parentId": "3",
+					"parentText": null,
+					"hasParent": false,
+					"hasChildren": false
+				}, {
+					"id": "6",
+					"text": "用户管理",
+					"state": null,
+					"type": 1,
+					"perms": "sys:user:user",
+					"component": "views/userlist.vue",
+					"redirect": null,
+					"isCacheRoute": 1,
+					"orderNum": null,
+					"checked": true,
+					"attributes": {
+						"icon": "style",
+						"url": "/userlist"
+					},
+					"children": [{
+						"id": "12",
+						"text": "新增",
+						"state": null,
+						"type": 2,
+						"perms": "sys:user:add",
+						"component": null,
+						"redirect": null,
+						"isCacheRoute": null,
+						"orderNum": null,
+						"checked": true,
+						"attributes": {
+							"icon": "",
+							"url": ""
+						},
+						"children": [],
+						"parentId": "6",
+						"parentText": "用户管理",
+						"hasParent": true,
+						"hasChildren": false
+					}, {
+						"id": "14",
+						"text": "删除",
+						"state": null,
+						"type": 2,
+						"perms": "sys:user:remove",
+						"component": null,
+						"redirect": null,
+						"isCacheRoute": null,
+						"orderNum": null,
+						"checked": true,
+						"attributes": {
+							"icon": null,
+							"url": null
+						},
+						"children": [],
+						"parentId": "6",
+						"parentText": "用户管理",
+						"hasParent": true,
+						"hasChildren": false
+					}, {
+						"id": "25",
+						"text": "停用",
+						"state": null,
+						"type": 2,
+						"perms": "sys:user:disable",
+						"component": null,
+						"redirect": null,
+						"isCacheRoute": null,
+						"orderNum": null,
+						"checked": true,
+						"attributes": {
+							"icon": null,
+							"url": null
+						},
+						"children": [],
+						"parentId": "6",
+						"parentText": "用户管理",
+						"hasParent": true,
+						"hasChildren": false
+					}, {
+						"id": "13",
+						"text": "编辑",
+						"state": null,
+						"type": 2,
+						"perms": "sys:user:edit",
+						"component": null,
+						"redirect": null,
+						"isCacheRoute": null,
+						"orderNum": null,
+						"checked": true,
+						"attributes": {
+							"icon": "",
+							"url": ""
+						},
+						"children": [],
+						"parentId": "6",
+						"parentText": "用户管理",
+						"hasParent": true,
+						"hasChildren": false
+					}, {
+						"id": "24",
+						"text": "批量删除",
+						"state": null,
+						"type": 2,
+						"perms": "sys:user:batchRemove",
+						"component": null,
+						"redirect": null,
+						"isCacheRoute": null,
+						"orderNum": null,
+						"checked": true,
+						"attributes": {
+							"icon": "",
+							"url": ""
+						},
+						"children": [],
+						"parentId": "6",
+						"parentText": "用户管理",
+						"hasParent": true,
+						"hasChildren": false
+					}, {
+						"id": "26",
+						"text": "重置密码",
+						"state": null,
+						"type": 2,
+						"perms": "sys:user:resetPwd",
+						"component": null,
+						"redirect": null,
+						"isCacheRoute": null,
+						"orderNum": null,
+						"checked": true,
+						"attributes": {
+							"icon": "",
+							"url": ""
+						},
+						"children": [],
+						"parentId": "6",
+						"parentText": "用户管理",
+						"hasParent": true,
+						"hasChildren": false
+					}],
+					"parentId": "3",
+					"parentText": null,
+					"hasParent": false,
+					"hasChildren": true
+				}, {
+					"id": "7",
+					"text": "角色管理",
+					"state": null,
+					"type": 1,
+					"perms": "sys:role:role",
+					"component": "views/rolelist.vue",
+					"redirect": null,
+					"isCacheRoute": 1,
+					"orderNum": null,
+					"checked": true,
+					"attributes": {
+						"icon": "recent_actors",
+						"url": "/rolelist"
+					},
+					"children": [{
+						"id": "55",
+						"text": "编辑",
+						"state": null,
+						"type": 2,
+						"perms": "sys:role:edit",
+						"component": null,
+						"redirect": null,
+						"isCacheRoute": null,
+						"orderNum": null,
+						"checked": true,
+						"attributes": {
+							"icon": "",
+							"url": ""
+						},
+						"children": [],
+						"parentId": "7",
+						"parentText": "角色管理",
+						"hasParent": true,
+						"hasChildren": false
+					}, {
+						"id": "56",
+						"text": "删除",
+						"state": null,
+						"type": 2,
+						"perms": "sys:role:remove",
+						"component": null,
+						"redirect": null,
+						"isCacheRoute": null,
+						"orderNum": null,
+						"checked": true,
+						"attributes": {
+							"icon": null,
+							"url": ""
+						},
+						"children": [],
+						"parentId": "7",
+						"parentText": "角色管理",
+						"hasParent": true,
+						"hasChildren": false
+					}, {
+						"id": "62",
+						"text": "批量删除",
+						"state": null,
+						"type": 2,
+						"perms": "sys:role:batchRemove",
+						"component": null,
+						"redirect": null,
+						"isCacheRoute": null,
+						"orderNum": null,
+						"checked": true,
+						"attributes": {
+							"icon": null,
+							"url": ""
+						},
+						"children": [],
+						"parentId": "7",
+						"parentText": "角色管理",
+						"hasParent": true,
+						"hasChildren": false
+					}, {
+						"id": "15",
+						"text": "新增",
+						"state": null,
+						"type": 2,
+						"perms": "sys:role:add",
+						"component": null,
+						"redirect": null,
+						"isCacheRoute": null,
+						"orderNum": null,
+						"checked": true,
+						"attributes": {
+							"icon": "",
+							"url": ""
+						},
+						"children": [],
+						"parentId": "7",
+						"parentText": "角色管理",
+						"hasParent": true,
+						"hasChildren": false
+					}],
+					"parentId": "3",
+					"parentText": null,
+					"hasParent": false,
+					"hasChildren": true
+				}];
+				console.log(menulist);
+				store.dispatch('GenerateRoutes', {
+					menulist
+				}).then(() => {
+					router.addRoutes(store.getters.addRouters)
 				})
+				sessionStorage.setItem('subMenu[' + menuId + ']', JSON.stringify(menulist))
+				
 			}
 
 		}

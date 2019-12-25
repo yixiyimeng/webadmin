@@ -13,24 +13,35 @@ export const constantRouterMap = [{
 			permission: ['home']
 		},
 		children: [{
-			path: '/about',
-			name: 'about',
-			component: () => import( /* webpackChunkName: "about" */ './views/about.vue'),
-			meta: {
-				title: '了解中科讯联',
-				icon: 'hourglass_empty',
-				permission: ['about']
+				path: '/about',
+				name: 'about',
+				component: () => import( /* webpackChunkName: "about" */ './views/about.vue'),
+				meta: {
+					title: '了解中科讯联',
+					icon: 'hourglass_empty',
+					permission: ['about']
+				}
+			}, {
+				path: '/base',
+				name: 'base',
+				component: () => import( /* webpackChunkName: "about" */ './views/base.vue'),
+				meta: {
+					title: '基础组件',
+					icon: 'hourglass_empty',
+					permission: ['about']
+				}
+			},
+			{
+				path: '/test',
+				name: 'test',
+				component: () => import( /* webpackChunkName: "about" */ './views/test.vue'),
+				meta: {
+					title: '二次封装组件',
+					icon: 'hourglass_empty',
+					permission: ['test']
+				}
 			}
-		}, {
-			path: '/base',
-			name: 'base',
-			component: () => import( /* webpackChunkName: "about" */ './views/base.vue'),
-			meta: {
-				title: '基础组件',
-				icon: 'hourglass_empty',
-				permission: ['about']
-			}
-		}]
+		]
 	}
 
 ]

@@ -1,11 +1,8 @@
 import T from 'ant-design-vue/es/table/Table'
 export default {
-	components: {
-	},
-  data () {
+ data () {
     return {
       needTotalList: [],
-
       selectedRows: [],
       selectedRowKeys: [],
 
